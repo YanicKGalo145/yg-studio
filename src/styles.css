@@ -1,0 +1,343 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap");
+
+/* =========================================
+   DESIGN TOKENS — identiques à YG Shooting
+   (couleur, typo, rayons) pour cohérence de marque
+   ========================================= */
+:root {
+  --bg: #09090a;
+  --panel: #101012;
+  --panel2: #151518;
+  --text: #f5f2ec;
+  --muted: #aaa7a0;
+  --gold: #c9a86a;
+  --gold2: #ead19a;
+  --line: #2a2928;
+  --error: #ef8f82;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--bg);
+}
+
+body {
+  margin: 0;
+  background: radial-gradient(circle at 50% 0, #191713 0, transparent 32rem),
+    var(--bg);
+  color: var(--text);
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+button {
+  font: inherit;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* =========================================
+   LAYOUT
+   ========================================= */
+.page {
+  min-height: 100vh;
+  padding: 28px 16px 42px;
+}
+
+.shell {
+  width: min(100%, 960px);
+  margin: auto;
+}
+
+/* =========================================
+   HEADER
+   ========================================= */
+.studio-header {
+  padding: 4px 4px 18px;
+}
+
+.brand {
+  font: 600 26px/1 "Outfit", sans-serif;
+  letter-spacing: -0.8px;
+  margin: 0;
+}
+
+.brand span {
+  color: var(--gold);
+}
+
+/* =========================================
+   HERO
+   ========================================= */
+.hero {
+  padding: 26px 4px 38px;
+}
+
+.eyebrow {
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 11px;
+  font-weight: 700;
+  margin: 0 0 10px;
+}
+
+.hero h1 {
+  font: 600 clamp(34px, 8vw, 58px) / 1.03 "Outfit", sans-serif;
+  letter-spacing: -1.8px;
+  margin: 10px 0 18px;
+}
+
+.intro {
+  color: var(--muted);
+  line-height: 1.75;
+  font-size: 14px;
+  max-width: 650px;
+}
+
+/* =========================================
+   ANIMATIONS — apparition progressive
+   (même logique que .reveal dans YG Shooting)
+   ========================================= */
+.reveal {
+  animation: fade 0.5s ease both;
+  animation-delay: var(--delay, 0s);
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    animation: none;
+  }
+}
+
+/* =========================================
+   SECTION "MES APPLICATIONS"
+   ========================================= */
+.section {
+  border-top: 1px solid var(--line);
+  padding: 28px 0 30px;
+}
+
+.apps-heading {
+  margin-bottom: 26px;
+}
+
+.apps-heading h2 {
+  font: 600 23px "Outfit", sans-serif;
+  letter-spacing: -0.5px;
+  margin: 0;
+  color: var(--text);
+}
+
+.apps-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+/* =========================================
+   CARTE APPLICATION
+   ========================================= */
+.app-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--line);
+  background: var(--panel);
+  border-radius: 18px;
+  padding: 22px;
+  cursor: pointer;
+  transition: transform 0.25s ease, border-color 0.25s ease,
+    background 0.25s ease, box-shadow 0.25s ease;
+}
+
+.app-card:hover,
+.app-card:focus-visible {
+  transform: translateY(-4px);
+  border-color: rgba(201, 168, 106, 0.4);
+  background: linear-gradient(
+    135deg,
+    rgba(201, 168, 106, 0.09),
+    rgba(255, 255, 255, 0.015)
+  ),
+    var(--panel);
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.35);
+  outline: none;
+}
+
+.app-card:active {
+  transform: translateY(-1px) scale(0.99);
+}
+
+.app-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.app-card-number {
+  font: 700 13px "Outfit", sans-serif;
+  letter-spacing: 0.08em;
+  color: var(--gold2);
+}
+
+.app-card-icon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  border: 1px solid rgba(201, 168, 106, 0.25);
+  background: rgba(201, 168, 106, 0.08);
+  color: var(--gold);
+}
+
+.app-card-icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.app-card-name {
+  font: 600 20px "Outfit", sans-serif;
+  letter-spacing: -0.3px;
+  margin: 0 0 8px;
+  color: var(--text);
+}
+
+.app-card-desc {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+  margin: 0;
+  flex-grow: 1;
+}
+
+.app-card-bottom {
+  margin-top: 20px;
+}
+
+.app-card-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--gold);
+  border-radius: 999px;
+  padding: 10px 18px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--gold2);
+  background: transparent;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.app-card:hover .app-card-cta,
+.app-card:focus-visible .app-card-cta {
+  background: linear-gradient(135deg, var(--gold2), var(--gold));
+  color: #17130d;
+}
+
+.app-card-arrow {
+  transition: transform 0.2s ease;
+}
+
+.app-card:hover .app-card-arrow,
+.app-card:focus-visible .app-card-arrow {
+  transform: translateX(3px);
+}
+
+.app-card.is-disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.app-card.is-disabled:hover {
+  transform: none;
+  border-color: var(--line);
+  background: var(--panel);
+  box-shadow: none;
+}
+
+.app-card-badge {
+  display: inline-flex;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--muted);
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+/* =========================================
+   FOOTER
+   ========================================= */
+.studio-footer {
+  text-align: center;
+  color: #696761;
+  font-size: 11px;
+  padding: 26px 0 0;
+}
+
+.studio-footer span {
+  color: var(--gold);
+  padding: 0 5px 0 0;
+}
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+@media (min-width: 700px) {
+  .page {
+    padding-top: 52px;
+  }
+  .hero {
+    padding-top: 10px;
+  }
+  .apps-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
+
+@media (min-width: 980px) {
+  .apps-grid {
+    gap: 22px;
+  }
+}
+
+@media (max-width: 500px) {
+  .apps-heading h2 {
+    font-size: 21px;
+  }
+  .app-card {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 360px) {
+  .page {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+  .hero h1 {
+    font-size: 34px;
+  }
+}
